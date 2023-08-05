@@ -29,5 +29,8 @@ include_directories(generator/headers)
 
 add_executable(digital_signal_processing
                main.cpp
-               generator/headers/signal_generator.h
-        generator/headers/noise_generator.h)
+        generator/headers/signal_function.h
+        generator/headers/noise_generator.h
+        generator/headers/signal_generate.h
+        generator/headers/noise_signal_function.h
+        generator/src/signal_generate.cpp)
