@@ -33,4 +33,6 @@ add_executable(digital_signal_processing
                ${GENERATOR_HEADERS}
                generator/src/signal_generate.cpp
                plotters/headers/plotter.h
-        plotters/src/plotter.cpp)
+        plotters/src/plotter.cpp
+        filter/headers/windowing_filter.h
+        filter/src/windowing_filter.cpp)
