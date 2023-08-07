@@ -6,8 +6,8 @@
 class WindowingFilter
 {
 public:
-    explicit WindowingFilter(int window_size = 3) : _window_size(window_size) {}
-    std::vector<double> smoothSignals(const std::vector<double>& signals) const;
+    explicit WindowingFilter(int window_size = 3);
+    [[nodiscard]] std::vector<double> smoothSignals(const std::vector<double>& signals) const;
 private:
     int _window_size;
 };
