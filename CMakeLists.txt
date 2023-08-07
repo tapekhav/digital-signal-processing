@@ -23,14 +23,14 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4)
 endif()
 
-include_directories(.)
-include_directories(generator)
 include_directories(generator/headers)
+include_directories(plotters/headers)
+
+file(GLOB GENERATOR_HEADERS generator/headers/*.h)
 
 add_executable(digital_signal_processing
                main.cpp
-        generator/headers/signal_function.h
-        generator/headers/noise_generator.h
-        generator/headers/signal_generate.h
-        generator/headers/noise_signal_function.h
-        generator/src/signal_generate.cpp)
+               ${GENERATOR_HEADERS}
+               generator/src/signal_generate.cpp
+               plotters/headers/plotter.h
+        plotters/src/plotter.cpp)
