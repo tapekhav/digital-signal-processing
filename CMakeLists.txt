@@ -25,6 +25,7 @@ endif()
 
 include_directories(generator/headers)
 include_directories(plotters/headers)
+include_directories(math/headers)
 
 file(GLOB GENERATOR_HEADERS generator/headers/*.h)
 
@@ -33,6 +34,8 @@ add_executable(digital_signal_processing
                ${GENERATOR_HEADERS}
                generator/src/signal_generate.cpp
                plotters/headers/plotter.h
-        plotters/src/plotter.cpp
-        filter/headers/windowing_filter.h
-        filter/src/windowing_filter.cpp)
+               plotters/src/plotter.cpp
+               filter/headers/windowing_filter.h
+               filter/src/windowing_filter.cpp
+        math/headers/math_tools.h
+        math/src/math_tools.cpp)
