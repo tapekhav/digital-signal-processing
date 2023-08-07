@@ -17,6 +17,8 @@ public:
                                                                                      _phase_offset(phase_offset) {}
     //!
     virtual double formula(double time) { return _amplitude * cos(2 * pi * time * _frequency + _phase_offset); }
+    //!
+    virtual ~SignalFunction() = default;
 protected:
     double _frequency;
     double _amplitude;
