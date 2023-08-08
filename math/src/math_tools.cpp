@@ -38,7 +38,8 @@ std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
     std::vector<ftype> result(size);
 
     std::vector<ftype> odd, even;
-    for (size_t i = 0; i < size / 2; i++) {
+    for (size_t i = 0; i < size / 2; i++)
+    {
         even.push_back(values.at(2 * i));
         odd.push_back(values.at(2 * i + 1));
     }
@@ -47,7 +48,8 @@ std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
     fft(odd, wn * wn);
 
     ftype w = 1;
-    for (size_t i = 0; i < size / 2; i++) {
+    for (size_t i = 0; i < size / 2; i++)
+    {
         result.at(i) = even.at(i) + w * odd.at(i);
         result.at(i + size / 2) = even.at(i) - w * odd.at(i); //! w^(i+n/2) = -w^i
         w *= wn;
