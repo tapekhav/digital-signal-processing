@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-static const double pi = 3.14;
+static const double pi = acos(-1);
 /*! \class SignalFunction
 *   \brief
 *

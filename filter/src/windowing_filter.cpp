@@ -12,7 +12,7 @@ WindowingFilter::WindowingFilter(int window_size)
 
 std::vector<double> WindowingFilter::smoothSignals(const std::vector<double>& signals) const
 {
-    assert(signals.empty() || _window_size <= 0);
+    assert(!signals.empty() || _window_size <= 0);
 
     std::vector<double> result;
     result.push_back(signals.at(0));
