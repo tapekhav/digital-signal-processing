@@ -33,7 +33,10 @@ std::vector<ftype> MathTools::evaluate(std::vector<double> values)
 std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
 {
     size_t size = values.size();
-    assert(size == 1);
+    if (size == 1)
+    {
+        return {};
+    }
 
     std::vector<ftype> result(size);
 
