@@ -22,7 +22,7 @@ class Plotter:
         self.__ax.set_title(title)
         self.__ax.set_ylabel(y_label)
         self.__ax.legend()
-        
+
 
 def main():
     pass
