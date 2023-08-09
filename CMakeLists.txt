@@ -40,5 +40,3 @@ add_executable(digital_signal_processing
                autocorrelation_function/headers/ring_shift_function.h
                autocorrelation_function/src/ring_shift_function.cpp
                autocorrelation_function/headers/autocorrelation_function.h)
-               math/headers/math_tools.h
-               math/src/math_tools.cpp)
