@@ -23,6 +23,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4)
 endif()
 
+include_directories(math/headers)
 include_directories(plotters/headers)
 include_directories(generator/headers)
 include_directories(autocorrelation_function/headers)
