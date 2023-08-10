@@ -3,10 +3,12 @@
 
 #include <autocorrelation_function.h>
 
+#include <cstddef>
+
 class RingShiftFunction final : public AbstractAutocorrelationFunction
 {
 public:
-    double estimateSignal(double signal);
+    double estimateSignal(size_t offset);
     std::vector<double> estimateSignals() final;
     ~RingShiftFunction() final = default;
 };

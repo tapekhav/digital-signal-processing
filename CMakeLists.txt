@@ -25,6 +25,7 @@ endif()
 
 include_directories(plotters/headers)
 include_directories(generator/headers)
+include_directories(math/headers)
 include_directories(autocorrelation_function/headers)
 
 file(GLOB GENERATOR_HEADERS generator/headers/*.h)
