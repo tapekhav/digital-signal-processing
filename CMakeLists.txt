@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.22.1)
 project(digital_signal_processing)
 
 include(CheckCXXCompilerFlag)
@@ -23,21 +23,14 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4)
 endif()
 
-include_directories(plotters/headers)
-include_directories(generator/headers)
-include_directories(math/headers)
-include_directories(autocorrelation_function/headers)
-
-file(GLOB GENERATOR_HEADERS generator/headers/*.h)
+add_subdirectory(math)
+add_subdirectory(filter)
+add_subdirectory(plotters)
+add_subdirectory(generator)
+add_subdirectory(autocorrelation_function)
 
 add_executable(digital_signal_processing
                main.cpp
-               ${GENERATOR_HEADERS}
-               generator/src/signal_generate.cpp
-               plotters/headers/plotter.h
-               plotters/src/plotter.cpp
-               filter/headers/windowing_filter.h
-               filter/src/windowing_filter.cpp
-               autocorrelation_function/headers/ring_shift_function.h
-               autocorrelation_function/src/ring_shift_function.cpp
-               autocorrelation_function/headers/autocorrelation_function.h)
+)
+
+target_link_libraries(digital_signal_processing Math AutocorrelationFunction Filter Plotter)
