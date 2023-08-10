@@ -22,7 +22,7 @@ double RingShiftFunction::estimateSignal(size_t offset)
     double original_mean = std::accumulate(_signals.begin(), _signals.end() - shift, 0.0) / size;
     double shifted_mean = std::accumulate(_signals.begin() + shift, _signals.end(), 0.0) / size;
 
-    
+
 
     return 0.0;
 }
