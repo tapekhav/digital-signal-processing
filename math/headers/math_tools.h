@@ -20,6 +20,8 @@ public:
 
     static std::vector<ftype> iterativeFFT(const std::vector<ftype>& values);
 
+    static void inverseFFT(std::vector<ftype>& values);
+
     static std::vector<ftype> castToComplex(const std::vector<double>& array);
 private:
     static uint32_t bit_reverse(uint32_t num, int bits);
