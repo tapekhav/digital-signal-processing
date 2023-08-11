@@ -74,7 +74,8 @@ uint32_t MathTools::bit_reverse(uint32_t num, int bits)
     return reversed;
 }
 
-void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<ftype>& A) {
+void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<ftype>& A)
+{
     int bits = 0;
 
     int size = static_cast<int>(values.size());
@@ -85,7 +86,7 @@ void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<f
 
     for (uint32_t k = 0; k < values.size(); ++k)
     {
-        A[bit_reverse(k, bits)] = values[k];
+        A.at(bit_reverse(k, bits)) = values.at(k);
     }
 }
 
@@ -109,10 +110,10 @@ std::vector<ftype> MathTools::iterativeFFT(const std::vector<ftype> &values)
 
             for (size_t j = 0; j < q / 2; j++)
             {
-                ftype t = omega * A[k + j + q / 2];
-                ftype u = A[k + j];
-                A[k + j] = u + t;
-                A[k + j + q / 2] = u - t;
+                ftype t = omega * A.at(k + j + q / 2);
+                ftype u = A.at(k + j);
+                A.at(k + j) = u + t;
+                A.at(k + j + q / 2) = u - t;
                 omega *= omega_m;
             }
         }
@@ -147,7 +148,6 @@ void MathTools::inverseFFT(std::vector<ftype> &values)
     }
 
     std::vector<ftype> even, odd;
-    //! std::vector<ftype> odd(n / 2);
 
     for (size_t i = 0; i < n / 2; ++i)
     {
@@ -164,5 +164,13 @@ void MathTools::inverseFFT(std::vector<ftype> &values)
         ftype tmp = std::polar(1.0, 2 * M_PI * static_cast<double>(i) / size) * odd.at(i);
         values.at(i) = even.at(i) + tmp;
         values.at(i + n / 2) = even.at(i) - tmp;
+    }
+}
+
+void MathTools::addToPowerOfTwo(std::vector<double> &values)
+{
+    while(__builtin_popcount(static_cast<uint32_t>(values.size())) != 1)
+    {
+        values.push_back(0);
     }
 }

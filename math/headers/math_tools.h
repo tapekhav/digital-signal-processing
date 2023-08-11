@@ -23,6 +23,8 @@ public:
     static void inverseFFT(std::vector<ftype>& values);
 
     static std::vector<ftype> castToComplex(const std::vector<double>& array);
+
+    static void addToPowerOfTwo(std::vector<double>& values);
 private:
     static uint32_t bit_reverse(uint32_t num, int bits);
 

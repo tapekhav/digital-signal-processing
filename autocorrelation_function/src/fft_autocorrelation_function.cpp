@@ -27,10 +27,10 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
 
     MathTools::inverseFFT(fft);
 
-    for (auto i : fft)
+    /*for (auto i : fft)
     {
         std::cout << "(" << i.real() << "; " << i.imag() << ")" << "\n";
-    }
+    } */
 
     std::vector<double> result;
     double k_prop = fft.at(0).real();
