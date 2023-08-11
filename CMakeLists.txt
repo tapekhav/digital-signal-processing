@@ -29,6 +29,9 @@ add_subdirectory(plotters)
 add_subdirectory(generator)
 add_subdirectory(autocorrelation_function)
 
+include_directories(autocorrelation_function/headers)
+include_directories(math/headers)
+
 add_executable(digital_signal_processing
                main.cpp
 )
