@@ -18,13 +18,13 @@ std::vector<double> RingShiftFunction::estimateSignals()
 
 double RingShiftFunction::estimateSignal(size_t offset)
 {
-    auto size = static_cast<double>(_signals.size() - offset);
-    long shift = static_cast<long>(offset);
+    //auto size = static_cast<double>(_signals.size() - offset);
+    double shift = static_cast<double>(offset);
 
-    double original_mean = std::accumulate(_signals.begin(), _signals.end() - shift, 0.0) / size;
-    double shifted_mean = std::accumulate(_signals.begin() + shift, _signals.end(), 0.0) / size;
+    //double original_mean = std::accumulate(_signals.begin(), _signals.end() - shift, 0.0) / size;
+    //double shifted_mean = std::accumulate(_signals.begin() + shift, _signals.end(), 0.0) / size;
 
 
 
-    return 0.0;
+    return shift;
 }

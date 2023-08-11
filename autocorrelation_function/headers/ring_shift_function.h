@@ -8,6 +8,8 @@
 class RingShiftFunction final : public AbstractAutocorrelationFunction
 {
 public:
+    explicit RingShiftFunction(const std::vector<double>& values) : AbstractAutocorrelationFunction(values) {}
+
     double estimateSignal(size_t offset);
     std::vector<double> estimateSignals() final;
     ~RingShiftFunction() final = default;

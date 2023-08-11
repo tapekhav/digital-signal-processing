@@ -6,6 +6,7 @@
 class FFTAutoCorrelation final : public AbstractAutocorrelationFunction
 {
 public:
+    explicit FFTAutoCorrelation(const std::vector<double>& values) : AbstractAutocorrelationFunction(values) {}
     std::vector<double> estimateSignals() final;
     ~FFTAutoCorrelation() final = default;
 };

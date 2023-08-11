@@ -1,5 +1,7 @@
 #include <math_tools.h>
 
+#include <cassert>
+
 double MathTools::dispersion(const std::vector<double> &array)
 {
     auto size = static_cast<long>(array.size());
@@ -74,7 +76,8 @@ uint32_t MathTools::bit_reverse(uint32_t num, int bits)
 void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<ftype>& A) {
     int bits = 0;
 
-    while ((1 << bits) < values.size())
+    int size = static_cast<int>(values.size());
+    while ((1 << bits) < size)
     {
         ++bits;
     }
@@ -88,8 +91,9 @@ void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<f
 std::vector<ftype> MathTools::iterativeFFT(const std::vector<ftype> &values)
 {
     size_t n = values.size();
-    std::vector<ftype> A(n);
+    assert(n == 0 ? false : (n & (n - 1)) == 0);
 
+    std::vector<ftype> A(n);
     bit_reverse_copy(values, A);
 
     for (int s = 1; s <= std::log2(n); s++)
@@ -135,18 +139,19 @@ double MathTools::meanValue(const std::vector<double> &values, long size)
 void MathTools::inverseFFT(std::vector<ftype> &values)
 {
     size_t n = values.size();
-    if (n <= 1)
+
+    if (n <= 1 || (n & (n - 1)) == 0 )
     {
         return;
     }
 
-    std::vector<ftype> even(n / 2);
-    std::vector<ftype> odd(n / 2);
+    std::vector<ftype> even, odd;
+    //! std::vector<ftype> odd(n / 2);
 
     for (size_t i = 0; i < n / 2; ++i)
     {
-        even.at(i) = values.at(i * 2);
-        odd.at(i) = values.at(i * 2 + 1);
+        even.push_back(values.at(i * 2));
+        odd.push_back(values.at(i * 2 + 1));
     }
 
     inverseFFT(even);
@@ -158,10 +163,5 @@ void MathTools::inverseFFT(std::vector<ftype> &values)
         ftype tmp = std::polar(1.0, 2 * M_PI * static_cast<double>(i) / size) * odd.at(i);
         values.at(i) = even.at(i) + tmp;
         values.at(i + n / 2) = even.at(i) - tmp;
-    }
-
-    for (auto i : values)
-    {
-        i /= size;
     }
 }
