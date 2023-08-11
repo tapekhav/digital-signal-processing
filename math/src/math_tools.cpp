@@ -167,6 +167,8 @@ void MathTools::inverseFFT(std::vector<ftype> &values)
     }
 }
 
+
+//! TODO Check addition to power
 void MathTools::addToPowerOfTwo(std::vector<double> &values)
 {
     while(__builtin_popcount(static_cast<uint32_t>(values.size())) != 1)

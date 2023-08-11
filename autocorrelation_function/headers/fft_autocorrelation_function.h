@@ -3,11 +3,17 @@
 
 #include <autocorrelation_function.h>
 
+/*! \class FFTAutoCorrelation
+*   \brief Class for FFT autocorrelation function
+*/
 class FFTAutoCorrelation final : public AbstractAutocorrelationFunction
 {
 public:
+    //! Constructor
     explicit FFTAutoCorrelation(const std::vector<double>& values) : AbstractAutocorrelationFunction(values) {}
+    //! FFT autocorrelation
     std::vector<double> estimateSignals() final;
+    //! Destructor
     ~FFTAutoCorrelation() final = default;
 };
 
