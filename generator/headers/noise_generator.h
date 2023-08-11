@@ -11,9 +11,9 @@ static const double k_noise_dispersion = 1e-6;
 class NoiseGenerator
 {
 public:
-    //!
+    //! Constructor
     inline NoiseGenerator(): _rd(), _gen(_rd()), _distribution(0, k_noise_dispersion) {}
-    //!
+    //! Generates random noise with a given dispersion
     inline double generate() { return _distribution(_gen); }
 
 private:
