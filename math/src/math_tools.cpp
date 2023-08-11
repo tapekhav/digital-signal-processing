@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+//! TODO delete asserts and add addition to power of 2 in fft and ifft
 double MathTools::dispersion(const std::vector<double> &array)
 {
     auto size = static_cast<long>(array.size());
