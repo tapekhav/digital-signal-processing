@@ -3,7 +3,6 @@
 
 #include <cmath>
 
-static const double pi = 3.14;
 /*! \class SignalFunction
 *   \brief
 *
@@ -16,7 +15,7 @@ public:
                                                                                      _amplitude(amplitude),
                                                                                      _phase_offset(phase_offset) {}
     //!
-    virtual double formula(double time) { return _amplitude * cos(2 * pi * time * _frequency + _phase_offset); }
+    virtual double formula(double time) { return _amplitude * sin(2 * M_PI * time * _frequency + _phase_offset); }
     //!
     virtual ~SignalFunction() = default;
 protected:
