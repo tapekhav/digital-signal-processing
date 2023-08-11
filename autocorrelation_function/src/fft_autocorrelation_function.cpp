@@ -24,7 +24,7 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
         value = copy;
     });
 
-    fft = MathTools::inverseFFT(fft);
+    MathTools::inverseFFT(fft);
 
     std::vector<double> result;
     double k_prop = fft.at(0).real();
