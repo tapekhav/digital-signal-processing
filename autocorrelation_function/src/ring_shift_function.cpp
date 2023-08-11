@@ -2,6 +2,8 @@
 
 #include <numeric>
 
+#include <math_tools.h>
+
 std::vector<double> RingShiftFunction::estimateSignals()
 {
     std::vector<double> result;
