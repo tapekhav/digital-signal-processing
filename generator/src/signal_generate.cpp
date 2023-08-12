@@ -1,6 +1,6 @@
 #include <signal_generate.h>
 
-SignalGenerate::SignalGenerate(SignalFunction *signal) : _signal(nullptr)
+SignalGenerate::SignalGenerate(SignalFunction *signal) : _signal(nullptr), _plotter(nullptr)
 {
     _signal = dynamic_cast<SignalFunction*>(signal);
     if (!_signal)
@@ -15,7 +15,14 @@ std::vector<double> SignalGenerate::getSignals(double start, double end, double 
     for (double i = start; i < end; i += step)
     {
         res.push_back(_signal->formula(i));
+        _plotter->addPoint(res.back());
     }
 
     return res;
+}
+
+SignalGenerate::~SignalGenerate()
+{
+    delete _signal;
+    delete _plotter;
 }

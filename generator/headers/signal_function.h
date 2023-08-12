@@ -3,21 +3,19 @@
 
 #include <cmath>
 
-static const double pi = acos(-1);
 /*! \class SignalFunction
-*   \brief
-*
+*   \brief Generate one signal unit without noise
 */
 class SignalFunction
 {
 public:
-    //!
+    //! Constructor
     inline SignalFunction(double frequency, double amplitude, double phase_offset) : _frequency(frequency),
                                                                                      _amplitude(amplitude),
                                                                                      _phase_offset(phase_offset) {}
-    //!
-    virtual double formula(double time) { return _amplitude * cos(2 * pi * time * _frequency + _phase_offset); }
-    //!
+    //! Implements formula for generating one signal unit without noise
+    virtual double formula(double time) { return _amplitude * sin(2 * M_PI * time * _frequency + _phase_offset); }
+    //! Destructor
     virtual ~SignalFunction() = default;
 protected:
     double _frequency;
