@@ -17,7 +17,7 @@ public:
     //! Destructor
     inline ~Plotter() { delete _file; }
     //! Insert point to the file
-    void addPoint(double x, double y, double z);
+    void addPoint(double x);
 
 private:
     //! Result file with points
