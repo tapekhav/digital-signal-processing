@@ -2,8 +2,8 @@
 #include <plotter.h>
 
 
-void Plotter::addPoint(double x, double y, double z)
+void Plotter::addPoint(double x)
 {
     assert(_file->is_open());
-    (*_file) << x << ' ' << y << ' ' << z << std::endl;
+    (*_file) << x << ' ' << "\n";
 }
