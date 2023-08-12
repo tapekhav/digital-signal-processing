@@ -2,6 +2,7 @@
 
 #include <numeric>
 #include <algorithm>
+#include <iostream>
 
 #include <math_tools.h>
 
@@ -24,7 +25,12 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
         value = copy;
     });
 
-    fft = MathTools::inverseFFT(fft);
+    MathTools::inverseFFT(fft);
+
+    /*for (auto i : fft)
+    {
+        std::cout << "(" << i.real() << "; " << i.imag() << ")" << "\n";
+    }*/
 
     std::vector<double> result;
     double k_prop = fft.at(0).real();
