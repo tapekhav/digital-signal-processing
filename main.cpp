@@ -1,3 +1,32 @@
+/*<<<<<<< filter
+#include <iostream>
+
+#include <signal_generate.h>
+#include <windowing_filter.h>
+
+int main()
+{
+    SignalGenerate gen_signals(new SignalFunction(1, 1, 0));
+
+    auto vec = gen_signals.getSignals(0, 1, 0.01);
+
+    for (auto i : vec)
+    {
+        std::cout << i << " ";
+    }
+
+    std::cout << "\n\n";
+
+    WindowingFilter zxc(5);
+
+    auto res = zxc.smoothSignals(vec);
+
+    for (auto i : res)
+    {
+        std::cout << i << " ";
+    }
+=======
+*/
 /*<<<<<<< autocorrelation
 #include <fft_autocorrelation_function.h>
 #include <math_tools.h>
