@@ -37,6 +37,7 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
     for (auto i : fft)
     {
         result.push_back(i.real() / k_prop);
+        _plt->addPoint(result.back());
     }
 
     return result;

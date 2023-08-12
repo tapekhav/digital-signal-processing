@@ -1,6 +1,7 @@
 #include <ring_shift_function.h>
 
 
+//! TODO check this method (it seems like cringe)
 std::vector<double> RingShiftFunction::estimateSignals()
 {
     size_t size = _signals.size();
@@ -12,6 +13,7 @@ std::vector<double> RingShiftFunction::estimateSignals()
         {
             size_t j = (i + shift) % size;
             result.at(shift) += _signals.at(i) * _signals.at(j);
+            _plt->addPoint(result.back());
         }
     }
 
