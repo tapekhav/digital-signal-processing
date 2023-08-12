@@ -19,7 +19,7 @@ public:
     //! Generates full signal in interval with step
     std::vector<double> getSignals(double start, double end, double step);
     //! Sets plotter object
-    inline void setPlotter(Plotter* plt) { _plotter = plt; }
+    void setPlotter(Plotter* plt) { _plotter = plt; }
     //! Destructor
     ~SignalGenerate();
 private:

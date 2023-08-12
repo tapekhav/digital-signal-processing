@@ -11,6 +11,7 @@
 class NoiseSignalFunction final : public SignalFunction
 {
 public:
+    NoiseSignalFunction(double freq, double amplitude, double offset) : SignalFunction(freq, amplitude, offset) {}
     //! Implements formula for generating one signal unit with noise
     double inline formula(double time) final { return _amplitude * sin(2 * M_PI * time * _frequency + _phase_offset)
                                                                                                     + gen.generate(); }
