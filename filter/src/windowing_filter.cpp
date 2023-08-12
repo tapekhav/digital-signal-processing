@@ -1,11 +1,10 @@
 #include <windowing_filter.h>
 
 #include <cassert>
-#include <cstddef>
 #include <numeric>
 
 
-WindowingFilter::WindowingFilter(int window_size)
+WindowingFilter::WindowingFilter(int window_size) : _plt(nullptr)
 {
     _window_size = _window_size % 2 == 0 ? ++window_size : window_size;
 }
@@ -20,11 +19,12 @@ std::vector<double> WindowingFilter::smoothSignals(const std::vector<double>& si
     auto window_size = static_cast<size_t>(_window_size);
     auto half_size = window_size / 2;
 
-    auto countSum = [signals, &result](size_t begin, size_t end, size_t denominator)
+    auto countSum = [&](size_t begin, size_t end, size_t denominator)
     {
         double sum = std::accumulate(signals.begin() + static_cast<long>(begin),
                 signals.begin() + static_cast<long>(end), 0.0);
         result.push_back(sum / static_cast<double>(denominator));
+        _plt->addPoint(result.back());
     };
 
     for (size_t i = 1; i < half_size; ++i)
