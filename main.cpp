@@ -1,17 +1,16 @@
-/*<<<<<<< filter
 #include <iostream>
 
 #include <signal_generate.h>
 #include <windowing_filter.h>
 
-int main()
-{
+
+//! TODO Add plotters tomorrow for test
+int main() {
     SignalGenerate gen_signals(new SignalFunction(1, 1, 0));
 
     auto vec = gen_signals.getSignals(0, 1, 0.01);
 
-    for (auto i : vec)
-    {
+    for (auto i: vec) {
         std::cout << i << " ";
     }
 
@@ -21,12 +20,12 @@ int main()
 
     auto res = zxc.smoothSignals(vec);
 
-    for (auto i : res)
-    {
+    for (auto i: res) {
         std::cout << i << " ";
     }
-=======
-*/
+
+    return 0;
+}
 /*<<<<<<< autocorrelation
 #include <fft_autocorrelation_function.h>
 #include <math_tools.h>
@@ -39,17 +38,3 @@ int main()
     zxc.estimateSignals();
 =======
 */
-#include <iostream>
-// #include <signal_generate.h>
-
-int main()
-{
-    /*
-    auto* plt = new Plotter(PATH);
-    SignalGenerate zxc(new NoiseSignalFunction(1, 1, 0));
-    zxc.setPlotter(plt);
-
-    zxc.getSignals(0, 5, 0.01);
-    */
-    return 0;
-}

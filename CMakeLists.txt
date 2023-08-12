@@ -29,8 +29,14 @@ add_subdirectory(plotters)
 add_subdirectory(generator)
 add_subdirectory(autocorrelation_function)
 
+include_directories(filter/headers)
+include_directories(generator/headers)
+include_directories(plotters/headers)
+
 add_executable(digital_signal_processing
                main.cpp
 )
 
-target_link_libraries(digital_signal_processing Math AutocorrelationFunction Filter Plotter)
+target_link_libraries(digital_signal_processing Generator Math AutocorrelationFunction Filter Plotter)
+add_compile_definitions(p_signal="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/signal.txt")
+add_compile_definitions(p_autocorr="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/autocorrelation_standard.txt")

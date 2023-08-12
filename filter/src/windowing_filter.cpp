@@ -4,7 +4,7 @@
 #include <numeric>
 
 
-WindowingFilter::WindowingFilter(int window_size) : _plt(nullptr)
+WindowingFilter::WindowingFilter(int window_size) : _window_size(window_size), _plt(nullptr)
 {
     _window_size = _window_size % 2 == 0 ? ++window_size : window_size;
 }
