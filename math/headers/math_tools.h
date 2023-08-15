@@ -29,11 +29,6 @@ public:
     static std::vector<ftype> FFT(std::vector<ftype> values);
     //! Casts array of doubles in complex numbers
     static std::vector<ftype> castToComplex(const std::vector<double> &array);
-private:
-    //! Finds number with reverse bits
-    // static uint32_t bit_reverse(uint32_t num, int bits);
-    //! Creates array with all bir reverse numbers
-    // static void bit_reverse_copy(const std::vector<ftype>& values, std::vector<ftype>& A);
 };
 
 #endif //DIGITAL_SIGNAL_PROCESSING_MATH_TOOLS_H

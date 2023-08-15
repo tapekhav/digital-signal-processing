@@ -33,7 +33,7 @@ int main() {
         std::cout << i << " ";
     }
 
-    FFTAutoCorrelation abc(vec);
+    RingShiftFunction abc(vec);
     abc.setPlotter(new Plotter(p_autocorr));
     abc.estimateSignals();
 

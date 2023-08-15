@@ -21,11 +21,9 @@ std::vector<double> RingShiftFunction::estimateSignals()
         for (size_t i = 0; i < original.size(); ++i) { product += original.at(i) * shifted.at(i); }
         product /= static_cast<double>(original.size());
 
-        result.push_back((product - mean_original * mean_shifted) / rms_original * rms_shifted);
+        result.push_back((product - mean_original * mean_shifted) / (rms_original * rms_shifted));
         _plt->addPoint(result.back());
     }
-
-
 
     return result;
 }
