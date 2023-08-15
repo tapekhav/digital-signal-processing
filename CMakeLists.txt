@@ -36,17 +36,18 @@ include_directories(generator/headers)
 include_directories(plotters/headers)
 include_directories(autocorrelation_function/headers)
 include_directories(math/headers)
+include_directories(cli/headers)
 include_directories(distribution_function/headers)
 
 add_executable(digital_signal_processing
                main.cpp
-               cli/headers/option.h
-               cli/src/option.cpp
+        cli/headers/cli.h
+        cli/src/cli.cpp
 )
 
 find_package(FFTW3 REQUIRED)
 set(CMAKE_CXX_FLAGS "-lfftw3")
-target_link_libraries(digital_signal_processing Generator Math AutocorrelationFunction Filter Plotter Distribution fftw3)
+target_link_libraries(digital_signal_processing Generator Math AutocorrelationFunction Filter Plotter Distribution CLI fftw3)
 
 add_compile_definitions(p_signal="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/signal.txt")
 add_compile_definitions(p_filter="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/filter.txt")
