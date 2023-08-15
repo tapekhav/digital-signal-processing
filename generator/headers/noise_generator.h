@@ -3,7 +3,7 @@
 
 #include <random>
 
-static const double k_noise_dispersion = 1e-2;
+static const double k_noise_dispersion = 2e-2;
 
 /*! \class NoiseGenerator
 *   \brief Generate noise with normal distribution

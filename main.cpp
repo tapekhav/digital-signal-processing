@@ -5,10 +5,11 @@
 #include <fft_autocorrelation_function.h>
 #include <ring_shift_function.h>
 #include <math_tools.h>
+#include <distribution_function.h>
 
 //! TODO Add plotters tomorrow for test
 int main() {
-    SignalGenerate gen_signals(new NoiseSignalFunction(1, 1, 0));
+    SignalGenerate gen_signals(new SignalFunction(1, 1, 0));
     gen_signals.setPlotter(new Plotter(p_signal));
 
     auto vec = gen_signals.getSignals(0, 5, 0.02);
@@ -28,27 +29,20 @@ int main() {
         std::cout << i << " ";
     }
 
-    // MathTools::addToPowerOfTwo(vec);
     for (auto i: vec) {
         std::cout << i << " ";
     }
+
+    DistributionFunction aaa(vec, res);
+    aaa.setPlotter(new Plotter(p_dist));
+
+    aaa.getDistributionFunction();
 
     RingShiftFunction abc(vec);
     abc.setPlotter(new Plotter(p_autocorr));
     abc.estimateSignals();
 
 
+
     return 0;
 }
-/*<<<<<<< autocorrelation
-#include <fft_autocorrelation_function.h>
-#include <math_tools.h>
-
-int main()
-{
-    std::vector<double> zv = {1.0, 2.0, 3.0, 4.0, 5.0};
-    MathTools::addToPowerOfTwo(zv);
-    FFTAutoCorrelation zxc(zv);
-    zxc.estimateSignals();
-=======
-*/

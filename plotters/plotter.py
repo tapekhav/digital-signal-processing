@@ -23,15 +23,17 @@ class Plotter:
 class InitClass:
     def __init__(self):
         self.plotter_signal = Plotter(1)
-        self.plotter_dist = Plotter(2)
         self.plotter_filter = Plotter(3)
         self.plotter_autocorr = Plotter(4)
+        self.plotter_dist = None
 
     def set_signal_plotter(self, data):
-        self.plotter_signal.launch_plotter(data, '', 'Signal', 'value')
+        self.plotter_signal.launch_plotter(data, 'aa', 'Signal', 'value')
 
     def set_dist_plotter(self, data):
-        self.plotter_dist.launch_plotter(data, 'a', 'Distribution function', 'b')
+        self.plotter_dist = Plotter(2)  # Create the dist plotter
+        self.plotter_dist.ax.scatter([int(i) for i in range(len(data))], data, marker='o')
+        self.plotter_dist.ax.set_title('Distribution function')
 
     def set_filter_plotter(self, data):
         self.plotter_filter.launch_plotter(data, 'a', 'Windowing filter', 'b')
@@ -39,18 +41,16 @@ class InitClass:
     def set_autocorr_plotter(self, data):
         self.plotter_autocorr.launch_plotter(data, 'a', 'Autocorrelation function', 'b')
 
-    def set_all_plotters(self, data_signal, data_dist, data_filter, data_autocorr):
+    def set_all_plotters(self, data_signal, data_filter, data_autocorr):
         self.set_signal_plotter(data_signal)
-        self.set_dist_plotter(data_dist)
         self.set_filter_plotter(data_filter)
         self.set_autocorr_plotter(data_autocorr)
-
-        plt.show()
+        self.plotter_dist = None
 
 
 def main():
     if len(sys.argv) < 5:
-        print("Usage: python script.py <signal_file> <dist_file> <filter_file> <autocorr_file>")
+        print("Usage: python3 script.py <signal_file> <dist_file> <filter_file> <autocorr_file>")
         return
 
     signal_data = read_data(sys.argv[1])
@@ -59,8 +59,10 @@ def main():
     autocorr_data = read_data(sys.argv[4])
 
     graphics = InitClass()
-    graphics.set_filter_plotter(filter_data)
-    graphics.set_all_plotters(signal_data, dist_data, filter_data, autocorr_data)
+    graphics.set_all_plotters(signal_data, filter_data, autocorr_data)
+    graphics.set_dist_plotter(dist_data)
+
+    plt.show()
 
 
 if __name__ == '__main__':
