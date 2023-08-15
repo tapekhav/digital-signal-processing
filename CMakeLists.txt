@@ -28,6 +28,7 @@ add_subdirectory(filter)
 add_subdirectory(plotters)
 add_subdirectory(generator)
 add_subdirectory(autocorrelation_function)
+add_subdirectory(cli)
 
 include_directories(filter/headers)
 include_directories(generator/headers)
@@ -37,6 +38,8 @@ include_directories(math/headers)
 
 add_executable(digital_signal_processing
                main.cpp
+               cli/headers/option.h
+               cli/src/option.cpp
 )
 
 find_package(FFTW3 REQUIRED)
