@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <plotter.h>
+#include <math_tools.h>
 
 /*! \class AbstractAutocorrelationFunction
 *   \brief Abstract class for autocorrelation functions

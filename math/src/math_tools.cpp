@@ -1,20 +1,18 @@
 #include <math_tools.h>
 
-#include <cassert>
+#include <fftw3.h>
 
-//! TODO delete asserts and add addition to power of 2 in fft and ifft
 double MathTools::dispersion(const std::vector<double> &array)
 {
-    auto size = static_cast<long>(array.size());
     double dispersion = 0.0;
-    double mean_value = meanValue(array, size);
+    double mean_value = meanValue(array, array.size());
 
     for (double i : array)
     {
         dispersion += std::pow(i - mean_value, 2);
     }
 
-    dispersion /= static_cast<double>(size);
+    dispersion /= static_cast<double>(array.size());
 
     return dispersion;
 }
@@ -27,7 +25,7 @@ std::vector<ftype> MathTools::evaluate(std::vector<double> values)
         values.push_back(0);
     }
 
-    return fft(castToComplex(values), std::polar(1., 2 * M_PI / static_cast<double>(values.size())));
+    return fft(castToComplex(values), std::polar(-1., 2 * M_PI / static_cast<double>(values.size())));
 }
 
 std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
@@ -38,7 +36,6 @@ std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
         return {};
     }
 
-    std::vector<ftype> result(size);
 
     std::vector<ftype> odd, even;
     for (size_t i = 0; i < size / 2; i++)
@@ -47,20 +44,20 @@ std::vector<ftype> MathTools::fft(const std::vector<ftype> &values, ftype wn)
         odd.push_back(values.at(2 * i + 1));
     }
 
-    fft(even, wn * wn);
-    fft(odd, wn * wn);
+    even = fft(even, wn);
+    odd = fft(odd, wn);
 
-    ftype w = 1;
+
+    std::vector<ftype> result(size);
     for (size_t i = 0; i < size / 2; i++)
     {
-        result.at(i) = even.at(i) + w * odd.at(i);
-        result.at(i + size / 2) = even.at(i) - w * odd.at(i); //! w^(i+n/2) = -w^i
-        w *= wn;
+        result.at(i) = even.at(i) + wn * odd.at(i);
+        result.at(i + size / 2) = even.at(i) - wn * odd.at(i); //! w^(i+n/2) = -w^i
     }
 
     return result;
 }
-*/
+
 
 uint32_t MathTools::bit_reverse(uint32_t num, int bits)
 {
@@ -89,6 +86,7 @@ void MathTools::bit_reverse_copy(const std::vector<ftype>& values, std::vector<f
         A.at(bit_reverse(k, bits)) = values.at(k);
     }
 }
+
 
 std::vector<ftype> MathTools::iterativeFFT(const std::vector<ftype> &values)
 {
@@ -121,6 +119,7 @@ std::vector<ftype> MathTools::iterativeFFT(const std::vector<ftype> &values)
 
     return A;
 }
+ */
 
 std::vector<ftype> MathTools::castToComplex(const std::vector<double> &array)
 {
@@ -133,46 +132,47 @@ std::vector<ftype> MathTools::castToComplex(const std::vector<double> &array)
     return result;
 }
 
-double MathTools::meanValue(const std::vector<double> &values, long size)
+double MathTools::meanValue(const std::vector<double> &values, size_t size)
 {
-    return std::accumulate(values.begin(), values.begin() + size, 0.0) / static_cast<double>(size);
-}
-
-void MathTools::inverseFFT(std::vector<ftype> &values)
-{
-    size_t n = values.size();
-
-    if (n <= 1 || (n & (n - 1)) == 0 )
-    {
-        return;
-    }
-
-    std::vector<ftype> even, odd;
-
-    for (size_t i = 0; i < n / 2; ++i)
-    {
-        even.push_back(values.at(i * 2));
-        odd.push_back(values.at(i * 2 + 1));
-    }
-
-    inverseFFT(even);
-    inverseFFT(odd);
-
-    auto size = static_cast<double>(n);
-    for (size_t i = 0; i < n / 2; ++i)
-    {
-        ftype tmp = std::polar(1.0, 2 * M_PI * static_cast<double>(i) / size) * odd.at(i);
-        values.at(i) = even.at(i) + tmp;
-        values.at(i + n / 2) = even.at(i) - tmp;
-    }
+    return std::accumulate(values.begin(), values.end(), 0.0) / static_cast<double>(size);
 }
 
 
-//! TODO Check addition to power
-void MathTools::addToPowerOfTwo(std::vector<double> &values)
+std::vector<ftype> MathTools::inverseFFT(std::vector<ftype> values)
 {
-    while(__builtin_popcount(static_cast<uint32_t>(values.size())) != 1)
+    int size = static_cast<int>(values.size());
+    std::vector<ftype> result(values.size());
+
+    fftw_plan backward_plan = fftw_plan_dft_1d(size,
+                              reinterpret_cast<fftw_complex*>(const_cast<std::complex<double>*>(&values.at(0))),
+                              reinterpret_cast<fftw_complex*>(&result.at(0)),
+                              FFTW_BACKWARD, FFTW_ESTIMATE);
+
+    fftw_execute(backward_plan);
+
+    //! TODO think about this cycle
+    /*for (auto &i : result)
     {
-        values.push_back(0);
-    }
+        i /= static_cast<double>(size);
+    } */
+
+    fftw_destroy_plan(backward_plan);
+
+    return result;
+}
+
+std::vector<ftype> MathTools::FFT(std::vector<ftype> values)
+{
+    int size = static_cast<int>(values.size());
+    std::vector<ftype> result(values.size());
+
+    fftw_plan forward_plan = fftw_plan_dft_1d(size, reinterpret_cast<fftw_complex*>(const_cast<std::complex<double>*>(&values.at(0))),
+                                      reinterpret_cast<fftw_complex*>(&result.at(0)),
+                                      FFTW_FORWARD, FFTW_ESTIMATE);
+
+    fftw_execute(forward_plan);
+
+    fftw_destroy_plan(forward_plan);
+
+    return result;
 }

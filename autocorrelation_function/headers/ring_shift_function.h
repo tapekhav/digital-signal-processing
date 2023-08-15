@@ -16,7 +16,7 @@ public:
     //! Standard autocorrelation
     std::vector<double> estimateSignals() final;
     //! Destructor
-    ~RingShiftFunction() final = default;
+    inline ~RingShiftFunction() final { delete _plt; }
 };
 
 #endif //DIGITAL_SIGNAL_PROCESSING_RING_SHIFT_FUNCTION_H

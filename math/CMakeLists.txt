@@ -6,3 +6,6 @@ file(GLOB MATH_HEADERS headers/*.h)
 file(GLOB MATH_SOURCE src/*.cpp)
 
 add_library(Math ${MATH_HEADERS} ${MATH_SOURCE})
+
+find_package(FFTW3 REQUIRED)
+target_link_libraries(Math fftw3)

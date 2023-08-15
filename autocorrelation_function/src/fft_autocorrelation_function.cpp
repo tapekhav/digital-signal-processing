@@ -15,7 +15,7 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
 
     //! Ф(t) ~ Re ifft (|fft(x)|^2)
 
-    std::vector<ftype> fft = MathTools::iterativeFFT(MathTools::castToComplex(_signals));
+    std::vector<ftype> fft = MathTools::FFT(MathTools::castToComplex(_signals));
 
     //! |fft(x)|^2 = Re^2_{x_i} + Im^2_{x_i}
 
@@ -25,7 +25,7 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
         value = copy;
     });
 
-    MathTools::inverseFFT(fft);
+    std::vector<ftype> ifft = MathTools::inverseFFT(fft);
 
     /*for (auto i : fft)
     {
@@ -33,8 +33,8 @@ std::vector<double> FFTAutoCorrelation::estimateSignals()
     }*/
 
     std::vector<double> result;
-    double k_prop = fft.at(0).real();
-    for (auto i : fft)
+    double k_prop = ifft.at(0).real();
+    for (auto i : ifft)
     {
         result.push_back(i.real() / k_prop);
         _plt->addPoint(result.back());

@@ -15,7 +15,7 @@ public:
     //! Constructor
     inline explicit Plotter(const std::string& filepath) : _file(new std::ofstream(filepath)) {}
     //! Destructor
-    inline ~Plotter() { delete _file; }
+    ~Plotter();
     //! Insert point to the file
     void addPoint(double x);
 

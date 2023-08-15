@@ -17,6 +17,8 @@ public:
     [[nodiscard]] std::vector<double> smoothSignals(const std::vector<double>& signals) const;
     //! Sets plotter
     inline void setPlotter(Plotter* plt) { _plt = plt; }
+    //! Destructor
+    inline ~WindowingFilter() { delete _plt; }
 private:
     int _window_size;
     Plotter* _plt;

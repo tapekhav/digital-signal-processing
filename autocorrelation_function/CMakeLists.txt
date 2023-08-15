@@ -8,3 +8,6 @@ file(GLOB AUTOCORRELATION_HEADERS headers/*.h)
 file(GLOB AUTOCORRELATION_SOURCE src/*.cpp)
 
 add_library(AutocorrelationFunction ${AUTOCORRELATION_HEADERS} ${AUTOCORRELATION_SOURCE})
+find_package(FFTW3 REQUIRED)
+
+target_link_libraries(AutocorrelationFunction Math fftw3)

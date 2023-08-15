@@ -14,7 +14,7 @@ public:
     //! FFT autocorrelation
     std::vector<double> estimateSignals() final;
     //! Destructor
-    ~FFTAutoCorrelation() final = default;
+    inline ~FFTAutoCorrelation() final { delete _plt; }
 };
 
 #endif //DIGITAL_SIGNAL_PROCESSING_FFT_AUTOCORRELATION_FUNCTION_H
