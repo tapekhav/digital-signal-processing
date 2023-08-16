@@ -16,8 +16,12 @@
 class Option
 {
 public:
+    //! Constructor
+    explicit inline Option(const std::string& file_name = PLT_RESULT) : _file(file_name) {}
+
     //! Start program
     void start();
+
     //! Sets parameters of generator
     void selectGenerator();
     //! Sets parameters of filter
@@ -26,6 +30,7 @@ public:
     void selectAutocorrelation();
     //! Sets distribution function
     void setDistFunc();
+
     //! Print all data
     void printAll();
 private:
@@ -41,6 +46,8 @@ private:
     //! Distribution function
     std::unique_ptr<DistributionFunction> _dist_func;
     std::map<double, int> _dist_map;
+    //! Result file
+    std::ifstream _file;
 };
 
 #endif //DIGITAL_SIGNAL_PROCESSING_CLI_H

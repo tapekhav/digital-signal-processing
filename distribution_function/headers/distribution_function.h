@@ -6,6 +6,9 @@
 
 #include <plotter.h>
 
+/*! \class DistributionFunction
+*   \brief Creates distribution function
+*/
 class DistributionFunction
 {
 public:

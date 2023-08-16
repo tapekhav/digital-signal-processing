@@ -46,8 +46,6 @@ std::vector<ftype> MathTools::inverseFFT(std::vector<ftype> values)
 
     fftw_execute(backward_plan);
 
-    //! TODO think about this cycle
-
     fftw_destroy_plan(backward_plan);
 
     return result;
@@ -59,8 +57,8 @@ std::vector<ftype> MathTools::FFT(std::vector<ftype> values)
     std::vector<ftype> result(values.size());
 
     fftw_plan forward_plan = fftw_plan_dft_1d(size, reinterpret_cast<fftw_complex*>(const_cast<std::complex<double>*>(&values.at(0))),
-                                      reinterpret_cast<fftw_complex*>(&result.at(0)),
-                                      FFTW_FORWARD, FFTW_ESTIMATE);
+                                                    reinterpret_cast<fftw_complex*>(&result.at(0)),
+                                                    FFTW_FORWARD, FFTW_ESTIMATE);
 
     fftw_execute(forward_plan);
 
