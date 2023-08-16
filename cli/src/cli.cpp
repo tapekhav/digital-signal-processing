@@ -95,35 +95,35 @@ void Option::setDistFunc()
 
 void Option::printAll()
 {
-    std::cout << "Print result in file\n";
+    std::cout << "Result printed to file\n";
 
-    std::cout << "Result of generated signal: \n";
+    _file << "Result of generated signal: \n";
     for (auto i : _signal_vector)
     {
-        std::cout << i << '\n';
+        _file << i << '\n';
     }
 
-    std::cout << "\nResult of filtered signal: \n";
+    _file << "\nResult of filtered signal: \n";
     for (auto i : _filter_vector)
     {
-        std::cout << i << '\n';
+        _file << i << '\n';
     }
 
-    std::cout << "\nResult of distribution function: \n";
+    _file << "\nResult of distribution function: \n";
     for (auto i : _dist_map)
     {
-        std::cout << i.first << '\n';
+        _file << i.first << '\n';
     }
 
-    std::cout << "\nDeviations: \n";
+    _file << "\nDeviations: \n";
     for (auto i : _dist_map)
     {
-        std::cout << i.first << " " << i.second << '\n';
+        _file << i.first << " " << i.second << '\n';
     }
 
-    std::cout << "Autocorrelation function: \n";
+    _file << "Autocorrelation function: \n";
     for (auto i : _autocorr_vector)
     {
-        std::cout << i << '\n';
+        _file << i << '\n';
     }
 }

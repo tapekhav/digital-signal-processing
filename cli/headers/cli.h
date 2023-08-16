@@ -33,6 +33,9 @@ public:
 
     //! Print all data
     void printAll();
+
+    //! Destructor
+    inline ~Option() { _file.close(); }
 private:
     //! Generates signal
     std::unique_ptr<SignalGenerate> _signal;
@@ -47,7 +50,7 @@ private:
     std::unique_ptr<DistributionFunction> _dist_func;
     std::map<double, int> _dist_map;
     //! Result file
-    std::ifstream _file;
+    std::fstream _file;
 };
 
 #endif //DIGITAL_SIGNAL_PROCESSING_CLI_H

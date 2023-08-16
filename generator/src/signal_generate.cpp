@@ -13,10 +13,8 @@ SignalGenerate::SignalGenerate(SignalFunction *signal) : _signal(nullptr), _plot
 std::vector<double> SignalGenerate::getSignals(double start, double end, double step)
 {
     std::vector<double> res;
-    std::cout << step << "\n\n";
     for (double i = start; i < end; i += step)
     {
-        // std::cout << "i = " << i << "\tend = " << end << "\n";
         res.push_back(_signal->formula(i));
         _plotter->addPoint(res.back());
     }

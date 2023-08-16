@@ -51,4 +51,4 @@ add_compile_definitions(PLT_SIGNAL="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/s
 add_compile_definitions(PLT_FILTER="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/filter.txt")
 add_compile_definitions(PLT_AUTOCORRELATION_FUNC="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/autocorrelation.txt")
 add_compile_definitions(PLT_DISTRIBUTION="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/distribution_function.txt")
-add_compile_definitions(PLT_RESULT="${CMAKE_CURRENT_SOURCE_DIR}/../plotters/files/result.txt")
+add_compile_definitions(PLT_RESULT="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/result.txt")
