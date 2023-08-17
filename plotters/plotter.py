@@ -19,11 +19,10 @@ class Plotter:
         self.fig, self.ax = plt.subplots(figsize=(10, 10))
         self.number = number
 
-    def launch_plotter(self, data, label, title, y_label):
-        self.ax.plot(data, label=label)
+    def launch_plotter(self, data, title, y_label):
+        self.ax.plot(data)
         self.ax.set_title(title)
         self.ax.set_ylabel(y_label)
-        self.ax.legend()
 
 
 class InitClass:
@@ -34,7 +33,7 @@ class InitClass:
         self.plotter_dist = None
 
     def set_signal_plotter(self, data):
-        self.plotter_signal.launch_plotter(data, 'aa', 'Signal', 'value')
+        self.plotter_signal.launch_plotter(data, 'Signal', 'value')
 
     def __split_file(self, data):
         data1, data2 = [], []
@@ -55,10 +54,10 @@ class InitClass:
         self.plotter_dist.ax.set_title('Distribution function')
 
     def set_filter_plotter(self, data):
-        self.plotter_filter.launch_plotter(data, 'a', 'Windowing filter', 'b')
+        self.plotter_filter.launch_plotter(data, 'Windowing filter', 'value')
 
     def set_autocorr_plotter(self, data):
-        self.plotter_autocorr.launch_plotter(data, 'a', 'Autocorrelation function', 'b')
+        self.plotter_autocorr.launch_plotter(data, 'Autocorrelation function', 'value')
 
     def set_all_plotters(self, data_signal, data_filter, data_autocorr):
         self.set_signal_plotter(data_signal)
