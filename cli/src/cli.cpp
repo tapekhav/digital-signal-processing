@@ -32,9 +32,23 @@ void Option::selectGenerator()
     std::cout << "Set phase offset: ";
     std::cin >> offset;
 
-    SignalFunction* func = choice == 1 ? new SignalFunction(freq, A, offset) : new NoiseSignalFunction(freq, A, offset);
+    if (choice == 1)
+    {
+        auto func = new SignalFunction(freq, A, offset);
+        _signal = std::make_unique<SignalGenerate>(func);
+    }
+    else
+    {
+        auto func = new NoiseSignalFunction(freq, A, offset);
 
-    _signal = std::make_unique<SignalGenerate>(func);
+        std::cout << "Set dispersion of noises: ";
+        double dispersion;
+        std::cin >> dispersion;
+        func->setDispersion(dispersion);
+
+        _signal = std::make_unique<SignalGenerate>(func);
+    }
+
     _signal->setPlotter(new Plotter(PLT_SIGNAL));
 
     double begin, end, step;

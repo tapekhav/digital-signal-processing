@@ -15,6 +15,8 @@ public:
     //! Implements formula for generating one signal unit with noise
     double inline formula(double time) final { return _amplitude * sin(2 * M_PI * time * _frequency + _phase_offset)
                                                                                                     + gen.generate(); }
+    //! Sets dispersion of noises
+    inline void setDispersion(double dispersion) { gen.setDispersion(dispersion); }
     //! Destructor
     ~NoiseSignalFunction() final = default;
 private:

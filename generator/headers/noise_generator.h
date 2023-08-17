@@ -3,7 +3,7 @@
 
 #include <random>
 
-static const double k_noise_dispersion = 2e-2;
+static const double k_noise_dispersion = 3e-2;
 
 /*! \class NoiseGenerator
 *   \brief Generate noise with normal distribution
@@ -15,7 +15,8 @@ public:
     inline NoiseGenerator(): _rd(), _gen(_rd()), _distribution(0, k_noise_dispersion) {}
     //! Generates random noise with a given dispersion
     inline double generate() { return _distribution(_gen); }
-
+    //! Sets dispersion
+    void setDispersion(double dispersion);
 private:
     std::random_device _rd;
     std::mt19937 _gen;

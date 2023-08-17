@@ -23,7 +23,10 @@ std::map<double, double> DistributionFunction::getDistributionFunction()
     for (size_t i = 1; i < _diff.size(); ++i)
     {
         ++count;
-        result[_diff.at(i)] = count / static_cast<double>(_diff.size());
+        if (_diff.at(i - 1) != _diff.at(i))
+        {
+            result[_diff.at(i - 1)] = count / static_cast<double>(_diff.size());
+        }
     }
 
     for (auto i : result)
