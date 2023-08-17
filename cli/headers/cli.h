@@ -48,7 +48,7 @@ private:
     std::vector<double> _autocorr_vector;
     //! Distribution function
     std::unique_ptr<DistributionFunction> _dist_func;
-    std::map<double, int> _dist_map;
+    std::map<double, double> _dist_map;
     //! Result file
     std::fstream _file;
 };

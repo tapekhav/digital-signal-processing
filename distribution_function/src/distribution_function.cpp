@@ -12,26 +12,23 @@ DistributionFunction::DistributionFunction(const std::vector<double>& noise_sign
     }
 }
 
-std::map<double, int> DistributionFunction::getDistributionFunction()
+std::map<double, double> DistributionFunction::getDistributionFunction()
 {
     std::sort(_diff.begin(), _diff.end());
 
-    std::map<double, int> result;
+    std::map<double, double> result;
 
-    int count = 1;
-    _plt->addPoint(_diff.at(0));
+    double count = 1;
+    _plt->add2DPoint(_diff.at(0), result[_diff.at(0)]);
     for (size_t i = 1; i < _diff.size(); ++i)
     {
-        if (_diff.at(i) == _diff.at(i - 1))
-        {
-            ++count;
-        } else
-        {
-            count = 1;
-        }
+        ++count;
+        result[_diff.at(i)] = count / static_cast<double>(_diff.size());
+    }
 
-        result[_diff.at(i)] = count / static_cast<int>(_diff.size());
-        _plt->addPoint(_diff.at(i));
+    for (auto i : result)
+    {
+        _plt->add2DPoint(i.first, i.second);
     }
 
     return result;

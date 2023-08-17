@@ -14,3 +14,9 @@ Plotter::~Plotter()
     _file->close();
     delete _file;
 }
+
+void Plotter::add2DPoint(double x, double y)
+{
+    assert(_file->is_open());
+    (*_file) << x << ' ' << y << "\n";
+}

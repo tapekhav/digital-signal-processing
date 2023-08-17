@@ -15,7 +15,7 @@ public:
     //! Constructor
     DistributionFunction(const std::vector<double>& noise_signals, const std::vector<double>& filtered_signals);
     //! Gets values for distribution function
-    std::map<double, int> getDistributionFunction();
+    std::map<double, double> getDistributionFunction();
     //! Sets plotter
     inline void setPlotter(Plotter* plt) { _plt = plt; }
     //! Destructor

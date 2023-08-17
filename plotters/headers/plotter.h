@@ -18,7 +18,8 @@ public:
     ~Plotter();
     //! Insert point to the file
     void addPoint(double x);
-
+    //! Insert 2D point to the file
+    void add2DPoint(double x, double y);
 private:
     //! Result file with points
     std::ofstream* _file;
