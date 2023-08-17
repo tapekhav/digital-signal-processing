@@ -52,3 +52,5 @@ chmod +x run-plotter.sh
 ![image](assets/pics/plotters/autocorr.jpg)
 ### Функция распределения
 ![image](assets/pics/plotters/dist.jpg)
+
+Числовые значения отработанных функций передаются в файл result.txt по умолчанию
