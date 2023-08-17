@@ -16,7 +16,7 @@ void Option::start()
 void Option::selectGenerator()
 {
     int choice;
-    std::cout << "Choose signal generator(formula Asin(wt + p)):\n";
+    std::cout << "Choose signal generator(formula Amplitude * sin(2 * PI * _frequency * time + _phase_offset)):\n";
     std::cout << "1) Standard generator\n";
     std::cout << "2) With noise\n";
 
