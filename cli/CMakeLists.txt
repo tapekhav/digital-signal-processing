@@ -19,4 +19,4 @@ add_compile_definitions(PLT_AUTOCORRELATION_FUNC="${CMAKE_CURRENT_SOURCE_DIR}/..
 add_compile_definitions(PLT_DISTRIBUTION="${CMAKE_CURRENT_SOURCE_DIR}/../plotters/files/distribution_function.txt")
 add_compile_definitions(PLT_RESULT="${CMAKE_CURRENT_SOURCE_DIR}/../plotters/files/result.txt")
 
-target_link_libraries(CLI Generator Math AutocorrelationFunction Filter Plotter Distribution fftw3)
+target_link_libraries(CLI Generator Math AutocorrelationFunction Filter Plotter Distribution)

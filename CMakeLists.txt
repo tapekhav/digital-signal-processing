@@ -47,8 +47,4 @@ find_package(FFTW3 REQUIRED)
 set(CMAKE_CXX_FLAGS "-lfftw3")
 target_link_libraries(digital_signal_processing Generator Math AutocorrelationFunction Filter Plotter Distribution CLI fftw3)
 
-add_compile_definitions(PLT_SIGNAL="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/signal.txt")
-add_compile_definitions(PLT_FILTER="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/filter.txt")
-add_compile_definitions(PLT_AUTOCORRELATION_FUNC="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/autocorrelation.txt")
-add_compile_definitions(PLT_DISTRIBUTION="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/distribution_function.txt")
 add_compile_definitions(PLT_RESULT="${CMAKE_CURRENT_SOURCE_DIR}/plotters/files/result.txt")
